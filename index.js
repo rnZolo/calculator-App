@@ -1,5 +1,5 @@
 // buttons in simple calculator
-const digits = document.querySelectorAll('.digit'),
+const inputs = document.querySelectorAll('.input'),
     devInfoBtn = document.querySelector('.info-btn'),
     delClrBtns = document.querySelectorAll('.erase'),
     dynamicDisplay = document.querySelectorAll('.dynamic'),
@@ -7,10 +7,17 @@ const digits = document.querySelectorAll('.digit'),
     inputOperator = document.querySelector('.operator')
 // console.log(inputValue)
 
+// other variables 
+let infoShowed = false,
+    inputAsArray = inputValue.textContent.split(''),
+    editInput,
+    mathInputs = []
+
 // display in simple calculator
 const devInfoDisplay = document.querySelector('.info-display')
 
 // //adding eventListener
+
 devInfoBtn.addEventListener('click', onOffInfo)
 delClrBtns.forEach((element, index) => {
     if (index) {
@@ -20,27 +27,27 @@ delClrBtns.forEach((element, index) => {
     }
 })
 
-// // for (let digit of digits) {
-// //     // digit.addEventListen
-// // }
-
-// other variables 
-let infoShowed = false,
-    inputAsArray = inputValue.textContent.split(''),
-    editInput,
-    mathInputs = []
-
+for (let input of inputs) {
+    input.addEventListener('click', function () {
+        pushInput(this.value);
+    });
+}
 
 //functions
+function pushInput(value) {
+    inputValue.textContent += value
+    inputAsArray.push(value)
+}
+
 function del() { //delete the recent charachter input
-    console.log('del')
     checkDevInfo()
     inputValue.textContent ? withVal() : withoutVal()
 }
 
 function clear() { //clear all inputs
-    console.log('clr')
     checkDevInfo()
+    inputAsArray = []
+    mathInputs = []
     for (let display of dynamicDisplay) {
         display.textContent = ""
     }
@@ -49,33 +56,29 @@ function clear() { //clear all inputs
 function withVal() {
     inputAsArray.pop()
     editInput = inputAsArray.join('')
-    console.log(inputAsArray)
     return inputValue.textContent = editInput
 }
 
 function withoutVal() {
     inputOperator.textContent = ""
 }
+
 function onOffInfo() { // show the dev info, creator and year
     if (!infoShowed) {
         devInfoDisplay.style.display = "grid"
-        console.log("dev info is Showed")
         return infoShowed = true;
     } else {
         displayNone(devInfoDisplay)
-        console.log("dev info is not Showed")
         return infoShowed = false;
     }
 }
 
 function checkDevInfo() { //check if dev info is showed
-    console.log("dev info is not Showed")
     infoShowed ? onOffInfo() : infoShowed = false;
 }
 
 function offInfo() {  // close the dev info : usable by other buttons
     displayNone(devInfoDisplay)
-    console.log("dev info is not Showed")
     return infoShowed = false;
 }
 
