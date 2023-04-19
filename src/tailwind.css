@@ -1,0 +1,154 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    font-family: 'Poppins', sans-serif;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+.calculator {
+    padding: 15px;
+    width: 25%;
+    aspect-ratio: 5 / 7;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 5% 15% repeat(5, 1fr);
+    gap: 10px;
+    @apply text-white;
+    min-width: 300px;
+    background: linear-gradient(180deg, rgb(65, 118, 187) 0%, rgb(56, 97, 138) 100%);
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.calculator div {
+    display: grid;
+}
+
+.calculator button {
+    padding: 10px;
+    border: 1px solid rgb(39, 39, 49);
+    background: rgb(27, 46, 70);
+    background: -moz-linear-gradient(166deg, rgba(47, 73, 108, 1) 0%, rgba(40, 62, 89, 1) 44%, rgba(17, 28, 41, 1) 65%, rgba(6, 11, 15, 1) 100%);
+    background: -webkit-linear-gradient(166deg, rgba(47, 73, 108, 1) 0%, rgba(40, 62, 89, 1) 44%, rgba(17, 28, 41, 1) 65%, rgba(6, 11, 15, 1) 100%);
+    background: linear-gradient(166deg, rgba(47, 73, 108, 1) 0%, rgba(40, 62, 89, 1) 44%, rgba(17, 28, 41, 1) 65%, rgba(6, 11, 15, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#2f496c", endColorstr="#060b0f", GradientType=1);
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.brand {
+    grid-area: 1 / 1 / 2 / 6;
+    font-weight: bolder;
+}
+
+.screen {
+    grid-area: 2 / 1 / 3 / 6;
+    width: 100%;
+    height: 100%;
+    background-color: #4d5846;
+    color: hsl(0, 0%, 10%);
+    border-radius: 5px;
+    position: relative;
+    font-family: 'VT323', monospace;
+    font-size: clamp(1rem, 0.8125rem + 0.8571vw, 1.5625rem);
+    display: grid;
+    place-content: center;
+    gap: 0;
+    grid-template-columns: .1fr .9fr;
+    grid-template-rows: .2fr .8fr;
+    overflow: hidden;
+}
+
+.screen span {
+    font-weight: bolder;
+    letter-spacing: 1px;
+}
+
+.screen .info-display {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #4d5846;
+    color: hsl(0, 0%, 10%);
+    font-size: clamp(.8rem, 0.7083rem + 1.3333vw, 1rem);
+    text-align: center;
+    display: none;
+    place-items: center;
+}
+
+.screen .math-exp {
+    grid-area: 1 / 1 / 2 / 3;
+    font-size: clamp(.6rem, 0.7083rem + 1.3333vw, .9rem);
+    padding: 0;
+    text-align: right;
+    padding: 1vw 1vw 0 0;
+}
+
+.screen .val {
+    grid-area: 2 / 2 / 3 / 3;
+    font-size: clamp(1.1rem, 0.7083rem + 1.3333vw, 1.4rem);
+    padding: 0;
+    text-align: right;
+    place-items: right;
+    padding: 3px 10px;
+}
+
+.screen .operator {
+    grid-area: 2 / 1 / 3 / 2;
+    font-size: clamp(1.1rem, 0.7083rem + 1.3333vw, 1.8rem);
+    padding: 0;
+    text-align: center;
+
+}
+
+.values {
+    grid-area: 4 / 1 / 8 / 4;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.fa-circle-info {
+    font-size: clamp(1rem, 0.7083rem + 1.3333vw, 1.875rem);
+}
+
+.operators {
+    grid-area: 4 / 4 / 8 / 6;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.operators button:last-child {
+    grid-column: 1 / 3;
+}
+
+.other-buttons {
+    grid-area: 3 / 1 / 4 / 6;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+}
+
+button[value="clear"] {
+    background: rgb(230, 90, 90);
+    background: -moz-linear-gradient(166deg, rgba(230, 90, 90, 1) 0%, rgba(196, 56, 56, 1) 43%, rgba(168, 39, 39, 1) 60%, rgba(113, 19, 19, 1) 100%);
+    background: -webkit-linear-gradient(166deg, rgba(230, 90, 90, 1) 0%, rgba(196, 56, 56, 1) 43%, rgba(168, 39, 39, 1) 60%, rgba(113, 19, 19, 1) 100%);
+    background: linear-gradient(166deg, rgba(230, 90, 90, 1) 0%, rgba(196, 56, 56, 1) 43%, rgba(168, 39, 39, 1) 60%, rgba(113, 19, 19, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#e65a5a", endColorstr="#711313", GradientType=1);
+}

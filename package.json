@@ -1,0 +1,28 @@
+{
+  "name": "calculatorapp",
+  "version": "1.0.0",
+  "description": "Simple Calculator App",
+  "main": "index.js",
+  "scripts": {
+    "tw-watch": "npx tailwindcss -i ./src/tailwind.css -o ./styles/style.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rnZolo/calculator-App.git"
+  },
+  "keywords": [
+    "SimpleApp",
+    "AppCalculator",
+    "SimpleCalculator",
+    "CalculatorApp"
+  ],
+  "author": "Renz Sagge",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rnZolo/calculator-App/issues"
+  },
+  "homepage": "https://github.com/rnZolo/calculator-App#readme",
+  "devDependencies": {
+    "tailwindcss": "^3.3.1"
+  }
+}
