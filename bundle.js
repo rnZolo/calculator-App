@@ -1,3 +1,4 @@
+(function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 
 
 // elements in simple calculator
@@ -15,7 +16,7 @@ const inputs = document.querySelectorAll('.input'),
 let infoShowed = false,
     inputAsArray = inputValue.textContent.split(''),
     editInput,
-    staging = [],
+    mathInputs = [],
     maxOpDisplayLngth = 1
 
 // display in simple calculator
@@ -63,7 +64,7 @@ operators.forEach((op) => {
 
 
 function equals() {
-    let toBeCal = staging
+    let toBeCal = mathInputs
     console.log(toBeCal);
     toBeCal.pop()
     console.log(toBeCal);
@@ -73,10 +74,10 @@ function equals() {
     inputValue.textContent = result;
 }
 
+
 function addOperator(op, orig) {
-    if (!inputOperatorDisplay.textContent) { //if there's no operator allow only one
+    if (inputOperatorDisplay.length <= 1)
         inputOperatorDisplay.textContent = op
-    }
     let fval = inputAsArray.join('')
     if (inputValue.textContent) {
         addToExp(fval)
@@ -87,26 +88,25 @@ function addOperator(op, orig) {
     } else {
         inputAsArray = []
         inputValue.textContent = ''
-        console.log(`staged: ${staging}`)
+        console.log(mathInputs)
     }
     inputAsArray = []
     inputValue.textContent = ''
-    console.log(`staged: ${staging}`)
+    console.log(mathInputs)
 }
 
 function addToExp(exp) {
-    staging.push(exp)
-    console.log(staging.length)
-    if (staging.length > 3) {
+    mathInputs.push(exp)
+    console.log(mathInputs.length)
+    if (mathInputs.length > 3) {
         equals()
     }
 }
 
 function pushInput(value) {
     checkDevInfo()
-    // inputValue.textContent += value
+    inputValue.textContent += value
     inputAsArray.push(value)
-    console.log(`cliked: ${inputAsArray}`)
 }
 
 function del() { //delete the recent charachter input
@@ -122,9 +122,7 @@ function clear() { //clear all inputs
         checkDevInfo()
     } else {
         inputAsArray = []
-        staging = []
-        console.log(`clrd: ${inputAsArray}`)
-        console.log(`clrd: ${staging}`)
+        mathInputs = []
         for (let display of dynamicDisplay) {
             display.textContent = ""
         }
@@ -134,15 +132,15 @@ function clear() { //clear all inputs
 function withVal() { //will del char intead of operator
     inputAsArray.pop()
     editInput = inputAsArray.join('')
-    console.log(`not del: ${inputAsArray}`)
-    console.log(`not del: ${staging}`)
+    console.log(inputAsArray)
+    console.log(mathInputs)
     return inputValue.textContent = editInput
 }
 
-function withoutVal() { // will del operator if there's no char
+function withoutVal() { // wukk dek operator if there's no char
     inputOperatorDisplay.textContent = ""
     console.log(inputAsArray)
-    console.log(staging)
+    console.log(mathInputs)
 }
 
 function onOffInfo() { // show the dev info, creator and year
@@ -168,3 +166,5 @@ function displayNone(element) { //hide an element
     element.style.display = "none"
 }
 
+
+},{}]},{},[1]);

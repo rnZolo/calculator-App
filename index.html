@@ -14,6 +14,7 @@
     <script src="https://kit.fontawesome.com/910cc9fb7b.js" crossorigin="anonymous"></script>
     <!-- js-functions -->
     <script src="./index.js" defer></script>
+    <script src="./bundle.js" defer></script>
     <title>Simple Calculator App</title>
 </head>
 <body class="bg-persian-blue-950" >
@@ -23,7 +24,7 @@
                 <div class="brand"><span class="brand-name">Simple Calculator</span></div>
                 <div class="screen border">
                     <span class="info-display">Developed by: Renz Sagge <br> 2023 </span>
-                    <span class="math-exp dynamic"></span>
+                    <span class="math-exp dynamic">fdas</span>
                     <span class="operator dynamic"></span>
                     <span class="val dynamic"></span>
                 </div>
@@ -39,13 +40,13 @@
                     <button class="digit input" type="button" value="3"><span>3</span></button>
                     <button class="digit input" type="button" value="."><span>.</span></button>
                     <button class="digit input" type="button" value="0"><span>0</span></button>
-                    <button type="button" value="-" class="math-op"><span>&plusmn;</span></button>
+                    <button type="button" value="-" class="input change"><span>&plusmn;</span></button>
                 </div>
                 <div class="operators ">
 
-                    <button type="button" value="%" class="math-op"><span>%</span></button>
-                    <button type="button" value="root" class="math-op"><span>&radic;</span></button>
-                    <button type="button" value="*" class="math-op"><span>&times;</span></button>
+                    <button type="button" value="%" class="input change"><span>%</span></button>
+                    <button type="button" value="^" class="input change"><span>&radic;</span></button>
+                    <button type="button" value="÷" class="math-op"><span>&times;</span></button>
                     <button type="button" value="/" class="math-op"><span>&divide;</span></button>
                     <button type="button" value="+" class="math-op"><span>&plus;</span></button>
                     <button type="button" value="-" class="math-op"><span>&minus;</span></button>
@@ -53,8 +54,8 @@
                 </div>
                 <div class="other-buttons">
                     <button type="button" title="info" value="info" class="info-btn"><span><i class="fa-solid fa-circle-info"></i></span></button>
-                    <button type="button" value="(" class="math-op input"><span>(</span></button>
-                    <button type="button" value=")" class="math-op input"><span>)</span></button>
+                    <button type="button" value="(" class="input"><span>(</span></button>
+                    <button type="button" value=")" class="input"><span>)</span></button>
                     <button type="button" value="del" class="erase"><span>del</span></button>
                     <button type="button" value="clear" class="erase"><span>clear</span></button>
                 </div>
