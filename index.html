@@ -25,40 +25,41 @@
                 <div class="brand"><span class="brand-name">Simple Calculator</span></div>
                 <div class="screen border">
                     <span class="info-display">Developed by: Renz Sagge <br> 2023 </span>
-                    <span class="math-exp dynamic formula"></span>
+                    <span class="math-exp dynamic formula" id="history-value"
+                    ></span>
                     <span class="operator dynamic"></span>
-                    <span class="val dynamic"></span>
+                    <span class="val dynamic" id="output-values"></span>
                 </div>
                 <div class="values ">
-                    <button class="digit input" type="button" value="7"><span>7</span></button> 
-                    <button class="digit input" type="button" value="8"><span>8</span></button>
-                    <button class="digit input" type="button" value="9"><span>9</span></button>  
-                    <button class="digit input" type="button" value="4"><span>4</span></button>
-                    <button class="digit input" type="button" value="5"><span>5</span></button>
-                    <button class="digit input" type="button" value="6"><span>6</span></button>
-                    <button class="digit input" type="button" value="1"><span>1</span></button>
-                    <button class="digit input" type="button" value="2"><span>2</span></button>
-                    <button class="digit input" type="button" value="3"><span>3</span></button>
-                    <button class="digit input" type="button" value="."><span>.</span></button>
-                    <button class="digit input" type="button" value="0"><span>0</span></button>
-                    <button type="button" value="-" class="input change"><span>&plusmn;</span></button>
+                    <button class="number input" type="button" value="7" id="7"><span>7</span></button> 
+                    <button class="number input" type="button" value="8" id="8"><span>8</span></button>
+                    <button class="number input" type="button" value="9" id="9"><span>9</span></button>  
+                    <button class="number input" type="button" value="4" id="4"><span>4</span></button>
+                    <button class="number input" type="button" value="5" id="5"><span>5</span></button>
+                    <button class="number input" type="button" value="6" id="6"><span>6</span></button>
+                    <button class="number input" type="button" value="1" id="1"><span>1</span></button>
+                    <button class="number input" type="button" value="2" id="2"><span>2</span></button>
+                    <button class="number input" type="button" value="3" id="3"<span>3</span></button>
+                    <button class="number input" type="button" value="." id="decimal"><span>.</span></button>
+                    <button class="number input" type="button" value="0" id="0"><span>0</span></button>
+                    <button type="button" value="-" class="input operator"><span>&plusmn;</span></button>
                 </div>
                 <div class="operators ">
 
-                    <button type="button" value="%" class="input change"><span>%</span></button>
-                    <button type="button" value="^" class="input change"><span>&radic;</span></button>
-                    <button type="button" value="*" class="math-op"><span>&times;</span></button>
-                    <button type="button" value="÷" class="math-op"><span>&divide;</span></button>
-                    <button type="button" value="+" class="math-op"><span>&plus;</span></button>
-                    <button type="button" value="-" class="math-op"><span>&minus;</span></button>
-                    <button type="button" value="=" class="math-op"><span>&equals;</span></button>
+                    <button type="button" value="%" class="input operator" id="%"><span>%</span></button>
+                    <button type="button" value="^" class="input " id="%"><span>&radic;</span></button>
+                    <button type="button" value="*" class="operator" id="*"><span>&times;</span></button>
+                    <button type="button" value="/" class="operator" id="/"><span>&divide;</span></button>
+                    <button type="button" value="+" class="operator" id="+"><span>&plus;</span></button>
+                    <button type="button" value="-" class="operator" id="-"><span>&minus;</span></button>
+                    <button type="button" value="=" class="operator" id="="><span>&equals;</span></button>
                 </div>
                 <div class="other-buttons">
                     <button type="button" title="info" value="info" class="info-btn"><span><i class="fa-solid fa-circle-info"></i></span></button>
-                    <button type="button" value="(" class="input"><span>(</span></button>
-                    <button type="button" value=")" class="input"><span>)</span></button>
-                    <button type="button" value="del" class="erase"><span>del</span></button>
-                    <button type="button" value="clear" class="erase"><span>clear</span></button>
+                    <button type="button" value="(" class="operator" id="("><span>(</span></button>
+                    <button type="button" value=")" class="operator" id=")"><span>)</span></button>
+                    <button type="button" value="del" class="operator" id="backspace"><span>del</span></button>
+                    <button type="button" value="clear" class="operator" id="clear"><span>clear</span></button>
                 </div>
 
             </div>
