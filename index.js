@@ -34,7 +34,8 @@ delClrBtns.forEach((element, index) => {
 
 for (let input of inputs) { // digits 
     input.addEventListener('click', function () {
-        pushInput(this.value);
+        let value = this.value
+        pushInput(value);
     });
 }
 
@@ -104,7 +105,7 @@ function addToExp(exp) {
 
 function pushInput(value) {
     checkDevInfo()
-    // inputValue.textContent += value
+    inputValue.textContent += value
     inputAsArray.push(value)
 }
 

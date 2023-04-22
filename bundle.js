@@ -105,7 +105,7 @@ function addToExp(exp) {
 
 function pushInput(value) {
     checkDevInfo()
-    // inputValue.textContent += value
+    inputValue.textContent += value
     inputAsArray.push(value)
 }
 
