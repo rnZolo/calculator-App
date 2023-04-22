@@ -5,24 +5,15 @@ const inputs = document.querySelectorAll('.input'),
     devInfoBtn = document.querySelector('.info-btn'),
     delClrBtns = document.querySelectorAll('.erase'),
     dynamicDisplay = document.querySelectorAll('.dynamic'),
-    inputValue = document.querySelector('.val'),
-    inputOperatorDisplay = document.querySelector('.operator'),
-    changers = document.querySelectorAll('.change'),
-    operators = document.querySelectorAll('.math-op')
+    equalBtn = document.querySelector('.equal')
 // console.log(inputValue)
 
-// other variables 
-let infoShowed = false,
-    inputAsArray = inputValue.textContent.split(''),
-    editInput,
-    mathInputs = [],
-    maxOpDisplayLngth = 1
-
 // display in simple calculator
-const devInfoDisplay = document.querySelector('.info-display')
+const devInfoDisplay = document.querySelector('.info-display'),
+    inputValue = document.querySelector('.val'),
+    evaluatedExp = document.querySelector('.formula')
 
 // //adding eventListener
-
 devInfoBtn.addEventListener('click', onOffInfo)// del and clear
 delClrBtns.forEach((element, index) => {
     if (index) {
@@ -39,81 +30,57 @@ for (let input of inputs) { // digits
     });
 }
 
-operators.forEach((op) => {
-    op.addEventListener('click', function () {
-        if (this.value === '*') {
-            addOperator('x', this.value)
-        } else if (this.value === '/') {
-            addOperator('÷', this.value)
-        } else {
-            addOperator(this.value, this.value)
-        }
-    })
-})
+equalBtn.addEventListener('click', evaluate)
 
-// changers.forEach((changer, index) => {
-//     if (index === 0) {
-//         console.log(changer.value)
-//     } else if (index === 1) {
-//         console.log(changer.value)
-//     } else {
-//         // percent()
-//         console.log(changer.value)
-//     }
-// })
+// other variables 
+let infoShowed = false,
+    inputAsArray = [],
+    inputAsString,
+    total
 
-
-function equals() {
-    let toBeCal = mathInputs
-    console.log(toBeCal);
-    toBeCal.pop()
-    console.log(toBeCal);
-    let output = toBeCal.join(' ');
-    let result = math.eval(output);
-    console.log(result);
-    inputValue.textContent = result;
-}
-
-function addOperator(op, orig) {
-    if (!inputOperatorDisplay.textContent) { //if theres no operator allow only one
-        inputOperatorDisplay.textContent = op
-    }
-    let fval = inputAsArray.join('')
-    if (inputValue.textContent) {
-        addToExp(fval)
-        addToExp(orig)
+function evaluate() {
+    try {
+        total ?? 0
+        console.log(total)
+        const expWithUniqueChar = inputAsArray.map((ch) => {
+            if (ch === "√") {
+                return Math.sqrt();
+            } else {
+                return ch;
+            }
+        }).join("");
+        total = math.evaluate(expWithUniqueChar)
+        evaluatedExp.textContent = inputAsString
+        inputValue.textContent = total
+        return total;
+    } catch (error) {
+        inputValue.textContent = 'Invalid'
         inputAsArray = []
-        inputValue.textContent = ''
-        console.log(inputOperatorDisplay.length)
-    } else {
-        inputAsArray = []
-        inputValue.textContent = ''
-        console.log(mathInputs)
-    }
-    inputAsArray = []
-    inputValue.textContent = ''
-    console.log(mathInputs)
-}
-
-function addToExp(exp) {
-    mathInputs.push(exp)
-    console.log(mathInputs.length)
-    if (mathInputs.length > 3) {
-        equals()
     }
 }
 
 function pushInput(value) {
     checkDevInfo()
-    inputValue.textContent += value
-    inputAsArray.push(value)
+    if (evaluatedExp.textContent) {
+        inputAsArray = []
+        inputAsString = ''
+        evaluatedExp.textContent = ''
+        totalAsArray = String(total).split()
+        inputAsArray.push(...totalAsArray)
+        inputAsArray.push(value)
+        printInput(inputAsArray)
+    } else {
+        inputAsArray.push(value)
+        printInput(inputAsArray)
+    }
 }
 
 function del() { //delete the recent charachter input
     if (infoShowed) {
         checkDevInfo()
     } else {
-        inputValue.textContent ? withVal() : withoutVal()
+        inputAsArray.pop()
+        printInput(inputAsArray)
     }
 }
 
@@ -122,27 +89,20 @@ function clear() { //clear all inputs
         checkDevInfo()
     } else {
         inputAsArray = []
-        mathInputs = []
+        inputAsString = ''
         for (let display of dynamicDisplay) {
             display.textContent = ""
         }
     }
 }
 
-function withVal() { //will del char intead of operator
-    inputAsArray.pop()
-    editInput = inputAsArray.join('')
+function printInput(arr) {
+    inputAsString = arr.join('')
+    inputValue.textContent = ''
+    inputValue.textContent = inputAsString
+    console.log(inputAsString)
     console.log(inputAsArray)
-    console.log(mathInputs)
-    return inputValue.textContent = editInput
 }
-
-function withoutVal() { // wukk dek operator if there's no char
-    inputOperatorDisplay.textContent = ""
-    console.log(inputAsArray)
-    console.log(mathInputs)
-}
-
 function onOffInfo() { // show the dev info, creator and year
     if (!infoShowed) {
         devInfoDisplay.style.display = "grid"
