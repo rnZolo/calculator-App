@@ -1,82 +1,128 @@
-function getHistory() {
-    return document.getElementById("history-value").innerText;
-}
-function printHistory(num) {
-    document.getElementById("history-value").innerText = num;
-}
-function getOutput() {
-    return document.getElementById("output-values").innerText;
-}
-function printOutput(num) {
-    if (num == "") {
-        document.getElementById("output-values").innerText = num;
-    }
-    else {
-        document.getElementById("output-values").innerText = getFormattedNumber(num);
-    }
-}
+const math = require('mathjs');
 
-function getFormattedNumber(num) {
-    if (num == "-") {
-        return "";
+// elements in simple calculator
+const inputs = document.querySelectorAll('.input'),
+    devInfoBtn = document.querySelector('.info-btn'),
+    delClrBtns = document.querySelectorAll('.erase'),
+    dynamicDisplay = document.querySelectorAll('.dynamic'),
+    equalBtn = document.querySelector('.equal')
+// console.log(inputValue)
+
+// display in simple calculator
+const devInfoDisplay = document.querySelector('.info-display'),
+    inputValue = document.querySelector('.val'),
+    evaluatedExp = document.querySelector('.formula')
+
+// //adding eventListener
+devInfoBtn.addEventListener('click', onOffInfo)// del and clear
+delClrBtns.forEach((element, index) => {
+    if (index) {
+        element.addEventListener('click', clear)
+    } else {
+        element.addEventListener('click', del)
     }
-    let n = Number(num);
-    let value = n.toLocaleString("en");
-    return value;
-}
-
-function reverseNumberFormat(num) {
-    return Number(num.replace(/,/g, ''));
-}
-
-let operators = document.querySelectorAll(".operator");
-for (let operator of operators) {
-    operator.addEventListener('click', function () {
-        if (this.id == "clear") {
-            printHistory("");
-            printOutput("");
-        }
-        else if (this.id == "backspace") {
-            let
-                output = reverseNumberFormat(getOutput()).toString();
-            if (output) {//if output has a value
-                output = output.substr(0, output.length - 1);
-                printOutput(output);
-            }
-        }
-        else {
-            let output = getOutput();
-            let history = getHistory();
-            if (output == "" && history != "") {
-                if (isNaN(history[history.length - 1])) {
-                    history = history.substr(0, history.length - 1);
-                }
-            }
-            if (output != "" || history != "") {
-                output = output == "" ?
-                    output : reverseNumberFormat(output);
-                history = history + output;
-                if (this.id == "=") {
-                    let result = eval(history);
-                    printOutput(result);
-                    printHistory("");
-                }
-                else {
-                    history = history + this.id;
-                    printHistory(history);
-                    printOutput("");
-                }
-            }
-        }
-    });
-}
-let numbers = document.querySelectorAll(".number");
-numbers.forEach((number) => {
-    number.addEventListener('click', function () {
-        let output = reverseNumberFormat(getOutput());
-        if (output != NaN) {
-            output = output + this.id;
-            printOutput(output);
-        }
-    });
 })
+
+for (let input of inputs) { // digits 
+    input.addEventListener('click', function () {
+        let value = this.value
+        pushInput(value);
+    });
+}
+
+equalBtn.addEventListener('click', evaluate)
+
+// other variables 
+let infoShowed = false,
+    inputAsArray = [],
+    inputAsString,
+    total
+
+function evaluate() {
+    try {
+        total ?? 0
+        console.log(total)
+        const expWithUniqueChar = inputAsArray.map((ch) => {
+            if (ch === "√") {
+                return Math.sqrt();
+            } else {
+                return ch;
+            }
+        }).join("");
+        total = math.evaluate(expWithUniqueChar)
+        evaluatedExp.textContent = inputAsString
+        inputValue.textContent = total
+        return total;
+    } catch (error) {
+        inputValue.textContent = 'Invalid'
+        inputAsArray = []
+    }
+}
+
+function pushInput(value) {
+    checkDevInfo()
+    if (evaluatedExp.textContent) {
+        inputAsArray = []
+        inputAsString = ''
+        evaluatedExp.textContent = ''
+        totalAsArray = String(total).split()
+        inputAsArray.push(...totalAsArray)
+        inputAsArray.push(value)
+        printInput(inputAsArray)
+    } else {
+        inputAsArray.push(value)
+        printInput(inputAsArray)
+    }
+}
+
+function del() { //delete the recent charachter input
+    if (infoShowed) {
+        checkDevInfo()
+    } else {
+        inputAsArray.pop()
+        printInput(inputAsArray)
+    }
+}
+
+function clear() { //clear all inputs
+    if (infoShowed) {
+        checkDevInfo()
+    } else {
+        inputAsArray = []
+        inputAsString = ''
+        for (let display of dynamicDisplay) {
+            display.textContent = ""
+        }
+    }
+}
+
+function printInput(arr) {
+    inputAsString = arr.join('')
+    inputValue.textContent = ''
+    inputValue.textContent = inputAsString
+    console.log(inputAsString)
+    console.log(inputAsArray)
+}
+function onOffInfo() { // show the dev info, creator and year
+    if (!infoShowed) {
+        devInfoDisplay.style.display = "grid"
+        return infoShowed = true;
+    } else {
+        displayNone(devInfoDisplay)
+        return infoShowed = false;
+    }
+}
+
+function checkDevInfo() { //check if dev info is showed
+    infoShowed ? onOffInfo() : infoShowed = false;
+}
+
+function offInfo() {  // close the dev info : usable by other buttons
+    displayNone(devInfoDisplay)
+    return infoShowed = false;
+}
+
+function displayNone(element) { //hide an element
+    return element.style.display = "none"
+}
+

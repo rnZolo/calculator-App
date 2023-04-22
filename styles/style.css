@@ -605,6 +605,10 @@ video {
   position: absolute;
 }
 
+.\!relative {
+  position: relative !important;
+}
+
 .relative {
   position: relative;
 }
@@ -619,6 +623,10 @@ video {
 
 .end-1 {
   inset-inline-end: 0.25rem;
+}
+
+.start-1 {
+  inset-inline-start: 0.25rem;
 }
 
 .isolate {
@@ -762,6 +770,10 @@ video {
 
 .h-full {
   height: 100%;
+}
+
+.w-1 {
+  width: 0.25rem;
 }
 
 .w-full {
@@ -1828,6 +1840,10 @@ video {
      object-fit: scale-down;
 }
 
+.p-1 {
+  padding: 0.25rem;
+}
+
 .text-left {
   text-align: left;
 }
@@ -2282,6 +2298,10 @@ video {
   content: var(--tw-content);
 }
 
+.\[start\:end\] {
+  start: end;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -2426,6 +2446,17 @@ button[value="clear"] {
   background: rgb(230, 90, 90);
   background: linear-gradient(166deg, rgba(230, 90, 90, 1) 0%, rgba(196, 56, 56, 1) 43%, rgba(168, 39, 39, 1) 60%, rgba(113, 19, 19, 1) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#e65a5a", endColorstr="#711313", GradientType=1);
+}
+
+button>span {
+  position: relative;
+}
+
+button[value="^"]>span::after {
+  content: "y";
+  width: 10px;
+  font-size: clamp(.5rem, 0.7083rem + 1.3333vw, .6rem);
+  position: absolute;
 }
 
 @media (min-width: 640px) {
