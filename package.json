@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "tw-watch": "npx tailwindcss -i ./src/tailwind.css -o ./styles/style.css --watch",
-    "brwsrfy": "browserify index.js -o bundle.js"
+    "brwsrfy": "browserify index.js -o calculator.js"
   },
   "repository": {
     "type": "git",

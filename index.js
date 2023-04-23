@@ -39,8 +39,7 @@ let infoShowed = false,
     inputAsString,
     total,
     equalIcon = ["fa-regular", "fa-equals", "fa-2xs"],
-    invalidIcon = ["fa-solid", "fa-circle-xmark", "fa-fade", "fa-xs"],
-    fadeAnimate = ["fa-fade"]
+    invalidIcon = ["fa-solid", "fa-circle-xmark", "fa-fade", "fa-xs"]
 
 function evaluate() {
     try {
@@ -54,35 +53,25 @@ function evaluate() {
             percentValue
         do {
             if (expWithUniqueChar.includes('%')) {
-                console.log(`there is %`)
                 value = []
                 //get the position of the % character
                 percentPosition = expWithUniqueChar.indexOf('%')
-                console.log(` position of % ${percentPosition}`)
                 // use the % character to loop and get the values before that character
                 for (let p = percentPosition - 1; p >= 0; p--) {
                     if (operatorsValue.includes(expWithUniqueChar.charAt([p]))) {
-                        console.log(` aha an operator lets stop this`)
                         break;
                     } else {
                         value.unshift(expWithUniqueChar.charAt([p]))
-                        console.log(`these are values before % ${value}`)
                     }
                 }
                 percentValue = `${value.join('')}%`
-                console.log(` this is the percent value${percentValue}`)
                 newValue = (Number(value.join('')) / 100)
-                console.log(` percent value converted to decimal ${newValue}`)
                 expWithUniqueChar = expWithUniqueChar.replace(percentValue, newValue)
-                console.log(`replaced String ${expWithUniqueChar.replace(percentValue, newValue)}`)
             } else {
-                console.log(` no more % yehey`)
                 ithasPercent = false
             }
         } while (ithasPercent === true);
-        console.log(` passed String ${expWithUniqueChar}`)
         total = math.evaluate(expWithUniqueChar)
-        console.log(`evaluated ${total}`)
         evaluatedExp.textContent = inputAsString
         addIcon(equalOrErrorDisplay, equalIcon)
         inputValue.textContent = total
@@ -90,7 +79,6 @@ function evaluate() {
     } catch (error) {
         addIcon(equalOrErrorDisplay, invalidIcon)
         inputValue.textContent = 'Invalid'
-        addIcon(inputValue, fadeAnimate)
     }
 }
 
@@ -126,7 +114,6 @@ function clear() { //clear all inputs
         inputAsArray = []
         inputAsString = ''
         removeIcon(equalOrErrorDisplay, invalidIcon)
-        removeIcon(inputValue, fadeAnimate)
         for (let display of dynamicDisplay) {
             display.textContent = ""
         }
@@ -138,7 +125,6 @@ function printInput(arr) {
     inputValue.textContent = ''
     removeIcon(equalOrErrorDisplay, equalIcon)
     removeIcon(equalOrErrorDisplay, invalidIcon)
-    removeIcon(inputValue, fadeAnimate)
     inputValue.textContent = inputAsString
 }
 function onOffInfo() { // show the dev info, creator and year
