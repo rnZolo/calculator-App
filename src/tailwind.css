@@ -70,7 +70,7 @@ body::-webkit-scrollbar {
     display: grid;
     place-content: center;
     gap: 0;
-    grid-template-columns: .1fr .9fr;
+    grid-template-columns: .2fr .8fr;
     grid-template-rows: .2fr .8fr;
     overflow: hidden;
 }
@@ -84,7 +84,7 @@ body::-webkit-scrollbar {
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: #4d5846;
+    background-color: rgb(77, 88, 70);
     color: hsl(0, 0%, 10%);
     font-size: clamp(.8rem, 0.7083rem + 1.3333vw, 1rem);
     text-align: center;
@@ -97,7 +97,7 @@ body::-webkit-scrollbar {
     font-size: clamp(.6rem, 0.7083rem + 1.3333vw, .9rem);
     padding: 0;
     text-align: right;
-    padding: 1vw 1vw 0 0;
+    padding: 1vw 1vw 0 1vw;
 }
 
 .screen .val {
@@ -114,7 +114,7 @@ body::-webkit-scrollbar {
     font-size: clamp(1.1rem, 0.7083rem + 1.3333vw, 1.8rem);
     padding: 0;
     text-align: center;
-
+    position: relative;
 }
 
 .values {
@@ -162,4 +162,10 @@ button[value="^"]>span::after {
     width: 10px;
     font-size: clamp(.5rem, 0.7083rem + 1.3333vw, .6rem);
     position: absolute;
+    text-transform: lowercase;
+}
+
+.eq-er {
+    width: 100%;
+    height: 100%;
 }
