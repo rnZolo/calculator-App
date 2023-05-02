@@ -113,6 +113,7 @@ function clear() { //clear all inputs
     } else {
         inputAsArray = []
         inputAsString = ''
+        removeIcon(equalOrErrorDisplay, equalIcon)
         removeIcon(equalOrErrorDisplay, invalidIcon)
         for (let display of dynamicDisplay) {
             display.textContent = ""
